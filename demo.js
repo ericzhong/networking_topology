@@ -1,3 +1,11 @@
+
+$(function() {
+	$("#w-sn").draggable({
+	helper: "clone"
+		});
+});
+
+/*
 //jsPlumb.ready(function() {
 jsPlumb.bind("ready", function() {
 
@@ -18,19 +26,9 @@ jsPlumb.bind("ready", function() {
 			]
 	});
 	
-	//jsPlumb.importDefaults({
-	//	Container : $("body"),
-	//	PaintStyle : {
-	//		lineWidth:2,
-	//		strokeStyle: 'rgba(200,0,0,0.5)'
-	//	},
-	//	DragOptions : { cursor: "crosshair" },
-	//	Endpoint : ["Dot", {radius:10}],
-	//	EndpointStyles : [{ fillStyle:"#220000" }, { fillStyle:"#558822" }],
-	//});
-
 	jsPlumb.draggable($(".vm,.sn"), {
-		containment:"parent"
+		//containment: $(".canvas")
+		containment: "parent"
 	});
 	
 	jsPlumb.bind("click", function(c) { 
@@ -57,16 +55,6 @@ jsPlumb.bind("ready", function() {
 		anchor:"Continuous"				
 	});
 	
-	//jsPlumb.connect({ source:$("#if1"), target:$("#sn1") });
-	//jsPlumb.connect({ source:"vm1", target:"vm2" });
-
-	//var e0 = jsPlumb.addEndpoint(("if1"), { container:$("body") });
-	//var e1 = jsPlumb.addEndpoint(("sn1"), { container:$("body") });
-	//jsPlumb.connect({ source:e0, target:e1 });
-
-	//jsPlumb.connect({ source:$("#vm1 #if1"), target:$("#sn1"), container:$("#vm1") });
-	//jsPlumb.connect({ source:$("#vm1 #if2"), target:$("#sn1"), container:$("#vm1") });
-	//jsPlumb.connect({ source:$("#vm1 #if2"), target:$("#sn1"), container:$("body") });
 	jsPlumb.connect({ source:$("#if2"), target:$("#sn1") });
 
 
@@ -142,4 +130,4 @@ jsPlumb.bind("ready", function() {
     //jsPlumb.addEndpoint("state3", exampleEndpoint2);
     //jsPlumb.addEndpoint("state1", {anchor:anchors}, exampleEndpoint2);
 });
-
+*/
