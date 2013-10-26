@@ -1,7 +1,19 @@
 $(function() {
+	//centering div
+
+	$('.drag').css({
+		position:'absolute',
+		left: ($(".item").width() - $('.drag').outerWidth())/2,
+		top: ($(".item").height() - $('.drag').outerHeight())/2
+	});
+		
+
 	$(".drag").draggable({
 	helper: "clone"
 	});
+
+
+
 });
 
 //jsPlumb.ready(function() {

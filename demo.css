@@ -6,49 +6,34 @@ body {
 
 
 .chart {
-	width:60em;
         height:30em;
-	/*margin:0 auto;*/
-	/*background-color:blue;*/
+	margin:0
 }
 
 .widget {
-	width:20%;
+	width:10em;
         height:100%;
-	/*margin:0 auto;*/
 	background-color:palegoldenrod;
-	/*float:left;*/
 	vertical-align:top;
+	float:left;
 }
 
 .canvas { 
-	width:80%;
+	width:50em;
         height:100%;
 	/*margin:0 auto;*/
 	background-color:white;
+	float:left;
 }
 
-.w-box {
-	width:100%;	
-	/*background-color:yellow;*/
+.item {
+	height: 7em;
+	background-color: darkgray;
+	border: 1px solid #e0e0e0;
+	position: relative;
 }
 
-.w-box tr {
-	width:100%;
-	height:5em;
-}
 
-.w-box td {
-	border: 1px solid black;
-	/*border-radius:5px;*/
-}
-
-.w-element {
-	list-style-type:none;
-}
-
-.w-element li {
-}
 
 
 .vm-name {
@@ -198,21 +183,25 @@ body {
 #vm1 {
 	left:10em;
 	top:5em;
+	position: relative;
 }
 
 #vm2 {
-	left:50em;
+	left:10em;
 	top:5em;
+	position: relative;
 }
 
 #sn1 {
-	left:10em;
+	left:5em;
 	top:20em;
+	position: relative;
 }
 
 #sn2 {
-	left:10em;
-	top:30em;
+	left:5em;
+	top:20em;
+	position: relative;
 }
 
 .dragHover { border:2px solid orange; }
