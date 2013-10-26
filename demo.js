@@ -1,11 +1,9 @@
-
 $(function() {
-	$("#w-sn").draggable({
+	$(".drag").draggable({
 	helper: "clone"
-		});
+	});
 });
 
-/*
 //jsPlumb.ready(function() {
 jsPlumb.bind("ready", function() {
 
@@ -26,11 +24,11 @@ jsPlumb.bind("ready", function() {
 			]
 	});
 	
-	jsPlumb.draggable($(".vm,.sn"), {
+	jsPlumb.draggable($(".canvas .sn,.canvas .vm"), {
 		//containment: $(".canvas")
 		containment: "parent"
 	});
-	
+
 	jsPlumb.bind("click", function(c) { 
 		jsPlumb.detach(c); 
 	});			
@@ -130,4 +128,3 @@ jsPlumb.bind("ready", function() {
     //jsPlumb.addEndpoint("state3", exampleEndpoint2);
     //jsPlumb.addEndpoint("state1", {anchor:anchors}, exampleEndpoint2);
 });
-*/
