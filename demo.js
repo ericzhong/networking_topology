@@ -79,12 +79,15 @@ jsPlumb.bind("ready", function() {
 				'position': ''
 				})
 				.removeClass("item")
-				//.addClass("_jsPlumb_endpoint_anchor_")
-				.attr('id','xyz')
+				.attr('id','') //jsPlumb generate
 				.appendTo($(this))
 
-			//jsPlumb.draggable($(".canvas #xyz"), {containment: "parent"})
 			el.draggable({containment:"parent"})
+			jsPlumb.draggable( el, {containment: "parent"})
+			jsPlumb.makeTarget( el, {
+				dropOptions:{ hoverClass:"dragHover" },
+				anchor:"Continuous"				
+			})
 		}
 	});
 
