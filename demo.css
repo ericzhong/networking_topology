@@ -1,3 +1,6 @@
+/*
+*{margin:0; padding:0;}
+*/
 
 body {
 	background-color:gray;
@@ -10,7 +13,7 @@ body {
 	margin:0
 }
 
-.widget {
+.panel {
 	width:10em;
         height:100%;
 	background-color:palegoldenrod;
@@ -26,7 +29,7 @@ body {
 	float:left;
 }
 
-.item {
+.item-box {
 	height: 7em;
 	background-color: darkgray;
 	border: 1px solid #e0e0e0;
@@ -172,7 +175,7 @@ body {
 }
 
 
-.drag {
+.item {
 	width:10em;
 }
 

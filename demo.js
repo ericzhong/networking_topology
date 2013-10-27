@@ -1,20 +1,39 @@
+/*
 $(function() {
+
 	//centering div
-
-	$('.drag').css({
+	$('.item').css({
 		position:'absolute',
-		left: ($(".item").width() - $('.drag').outerWidth())/2,
-		top: ($(".item").height() - $('.drag').outerHeight())/2
-	});
-		
-
-	$(".drag").draggable({
-	helper: "clone"
+		left: ($(".item-box").width() - $('.item').outerWidth())/2,
+		top: ($(".item-box").height() - $('.item').outerHeight())/2
 	});
 
+	$(".item").draggable({
+		helper: "clone",
+		appendTo: ".canvas"
+	});
 
+	$('.canvas').droppable({
+		accept: ".item",
 
+		drop: function (e, ui) {
+			var old = $(ui.draggable)
+			var el = old.clone()
+
+			el.css({
+				'top': ui.offset.top,
+				'left': ui.offset.left
+				})
+				.removeClass("item")
+				.attr('id','xyz')
+				.appendTo($(this))
+
+			jsPlumb.draggable($(".canvas #xyz"), {containment: "parent"})
+		}
+	});
 });
+*/
+
 
 //jsPlumb.ready(function() {
 jsPlumb.bind("ready", function() {
@@ -35,6 +54,42 @@ jsPlumb.bind("ready", function() {
 			[ "Label", { label:"FOO", id:"label", cssClass:"aLabel" }]
 			]
 	});
+
+	//centering div
+	$('.item').css({
+		position:'absolute',
+		left: ($(".item-box").width() - $('.item').outerWidth())/2,
+		top: ($(".item-box").height() - $('.item').outerHeight())/2
+	});
+
+	$(".item").draggable({
+		helper: "clone",
+		appendTo: ".canvas"
+	});
+
+	$('.canvas').droppable({
+		accept: ".item",
+
+		drop: function (e, ui) {
+			var old = $(ui.draggable)
+			var el = old.clone()
+			el.css({
+				'top': ui.offset.top,
+				'left': ui.offset.left,
+				'position': ''
+				})
+				.removeClass("item")
+				//.addClass("_jsPlumb_endpoint_anchor_")
+				.attr('id','xyz')
+				.appendTo($(this))
+
+			//jsPlumb.draggable($(".canvas #xyz"), {containment: "parent"})
+			el.draggable({containment:"parent"})
+		}
+	});
+
+
+
 	
 	jsPlumb.draggable($(".canvas .sn,.canvas .vm"), {
 		//containment: $(".canvas")
