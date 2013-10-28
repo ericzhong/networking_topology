@@ -34,7 +34,50 @@ jsPlumb.bind("ready", function() {
 
 	$(".item").draggable({
 		helper: "clone",
-		appendTo: ".canvas"
+		//appendTo: ".canvas"
+	});
+
+	$('.if-box').droppable({
+		accept: '.item.if', 
+
+		drop: function (e, ui) {
+			var old = $(ui.draggable)
+			var el = old.clone()
+			el.removeClass("item")
+				.removeClass("ui-draggable") //hack jQuery
+				.removeAttr("style")
+				.attr('id','') //jsPlumb generate
+				.appendTo($(this))
+
+			jsPlumb.makeSource( el, {
+				//filter:".if",				// only supported by jquery
+				anchor:"Continuous",
+				connector:[ "StateMachine", { curviness:20 } ],
+				connectorStyle:{ strokeStyle:"#5c96bc", lineWidth:2, outlineColor:"transparent", outlineWidth:4 },
+				maxConnections:5,
+				onMaxConnections:function(info, e) {
+					alert("Maximum connections (" + info.maxConnections + ") reached");
+				}
+			});			
+
+			jsPlumb.repaintEverything()
+		}
+	});
+
+	$('.vol-box').droppable({
+		accept: '.item.vol', 
+
+		drop: function (e, ui) {
+			var old = $(ui.draggable)
+			var el = old.clone()
+			el.removeClass("item")
+				.removeClass("ui-draggable")
+				.removeAttr("style")
+				.attr('id','') //jsPlumb generate
+				.appendTo($(this))
+
+			jsPlumb.repaintEverything()
+		}
 	});
 
 	$('.canvas').droppable({
@@ -55,15 +98,66 @@ jsPlumb.bind("ready", function() {
 				'position': ''
 				})
 				.removeClass("item")
+				.removeClass("ui-draggable")
 				.attr('id','') //jsPlumb generate
 				.appendTo($(this))
 
-			el.draggable({containment:"parent"})
+			if(el.hasClass('vm')){
+				//jsPlumb.draggable not work for VM
+				el.draggable({containment: "parent"})
+
+				el.find('.vm-content .vol-box').droppable({
+					accept: '.item.vol', 
+
+					drop: function (e, ui) {
+						var old = $(ui.draggable)
+						var el = old.clone()
+						el.removeClass("item")
+							.removeClass("ui-draggable")
+							.removeAttr("style")
+							.attr('id','') //jsPlumb generate
+							.appendTo($(this))
+
+						jsPlumb.repaintEverything()
+					}
+				})
+
+				el.find('.vm-content .if-box').droppable({
+					accept: '.item.if', 
+
+					drop: function (e, ui) {
+						var old = $(ui.draggable)
+						var el = old.clone()
+						el.removeClass("item")
+							.removeClass("ui-draggable") //hack jQuery
+							.removeAttr("style")
+							.attr('id','') //jsPlumb generate
+							.appendTo($(this))
+
+						jsPlumb.makeSource( el, {
+							//filter:".if",				// only supported by jquery
+							anchor:"Continuous",
+							connector:[ "StateMachine", { curviness:20 } ],
+							connectorStyle:{ strokeStyle:"#5c96bc", lineWidth:2, outlineColor:"transparent", outlineWidth:4 },
+							maxConnections:5,
+							onMaxConnections:function(info, e) {
+								alert("Maximum connections (" + info.maxConnections + ") reached");
+							}
+						});			
+
+						jsPlumb.repaintEverything()
+					}
+				})
+			}
+
 			jsPlumb.draggable( el, {containment: "parent"})
-			jsPlumb.makeTarget( el, {
-				dropOptions:{ hoverClass:"dragHover" },
-				anchor:"Continuous"				
-			})
+
+			if(el.hasClass('sn')){
+				jsPlumb.makeTarget( el, {
+					dropOptions:{ hoverClass:"dragHover" },
+					anchor:"Continuous"				
+				})
+			}
 		}
 	});
 	
