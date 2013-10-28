@@ -1,40 +1,3 @@
-/*
-$(function() {
-
-	//centering div
-	$('.item').css({
-		position:'absolute',
-		left: ($(".item-box").width() - $('.item').outerWidth())/2,
-		top: ($(".item-box").height() - $('.item').outerHeight())/2
-	});
-
-	$(".item").draggable({
-		helper: "clone",
-		appendTo: ".canvas"
-	});
-
-	$('.canvas').droppable({
-		accept: ".item",
-
-		drop: function (e, ui) {
-			var old = $(ui.draggable)
-			var el = old.clone()
-
-			el.css({
-				'top': ui.offset.top,
-				'left': ui.offset.left
-				})
-				.removeClass("item")
-				.attr('id','xyz')
-				.appendTo($(this))
-
-			jsPlumb.draggable($(".canvas #xyz"), {containment: "parent"})
-		}
-	});
-});
-*/
-
-
 //jsPlumb.ready(function() {
 jsPlumb.bind("ready", function() {
 
@@ -42,7 +5,7 @@ jsPlumb.bind("ready", function() {
 		Container : $("body"),
 		Anchor : [0.5, 0.5, 0, 0],
 		Endpoint : ["Dot", {radius:2}],
-		HoverPaintStyle : {strokeStyle:"#1e8151", lineWidth:2 },
+		HoverPaintStyle : {strokeStyle:"#1e8151", lineWidth:5 },
 		ConnectionOverlays : [
 			[ "Arrow", {
 				location:1,
@@ -55,11 +18,18 @@ jsPlumb.bind("ready", function() {
 			]
 	});
 
-	//centering div
-	$('.item').css({
-		position:'absolute',
-		left: ($(".item-box").width() - $('.item').outerWidth())/2,
-		top: ($(".item-box").height() - $('.item').outerHeight())/2
+	//centering
+	$('.item-box .item').each(function(){
+		$(this).css({
+			position:'absolute',
+			left: ($(".item-box").width() - $(this).outerWidth())/2,
+			top: ($(".item-box").height() - $(this).outerHeight())/2,
+			margin: 0
+		});
+	});
+
+	$(".panel").draggable({
+		containment: "parent"
 	});
 
 	$(".item").draggable({
@@ -90,9 +60,6 @@ jsPlumb.bind("ready", function() {
 			})
 		}
 	});
-
-
-
 	
 	jsPlumb.draggable($(".canvas .sn,.canvas .vm"), {
 		//containment: $(".canvas")
@@ -103,7 +70,7 @@ jsPlumb.bind("ready", function() {
 		jsPlumb.detach(c); 
 	});			
 		
-	jsPlumb.makeSource($(".if"), {
+	jsPlumb.makeSource($(".canvas .if"), {
 		//filter:".if",				// only supported by jquery
 		anchor:"Continuous",
 		connector:[ "StateMachine", { curviness:20 } ],
@@ -118,7 +85,7 @@ jsPlumb.bind("ready", function() {
 	//	info.connection.getOverlay("label").setLabel(info.connection.id);
 	//});
 
-	jsPlumb.makeTarget($(".sn"), {
+	jsPlumb.makeTarget($(".canvas .sn"), {
 		dropOptions:{ hoverClass:"dragHover" },
 		anchor:"Continuous"				
 	});
