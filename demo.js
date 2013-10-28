@@ -38,7 +38,13 @@ jsPlumb.bind("ready", function() {
 	});
 
 	$('.canvas').droppable({
-		accept: ".item",
+		accept: function(el){
+			if(el.hasClass('item') &&
+				(el.hasClass('vm') || 
+				el.hasClass('sn'))){
+				return true;
+			}
+		},
 
 		drop: function (e, ui) {
 			var old = $(ui.draggable)
