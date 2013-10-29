@@ -14,14 +14,15 @@ jsPlumb.bind("ready", function() {
 
 	jsPlumb.importDefaults({
 		Container : $("body"),
-		Endpoint : ["Dot", {radius:2}],
+		//Endpoint : ["Dot", {radius:5}],
+		Endpoints : [["Dot", {radius:2}], ["Dot", {radius:5}]],
 		Anchor : "Continuous",
 		HoverPaintStyle : {strokeStyle:"#1e8151", lineWidth:5 },
 		ConnectionOverlays : [
-			[ "Arrow", {location:1,	id:"arrow", length:12, foldback:0.8}],
-			[ "Label", {label:"FOO", id:"label", cssClass:"aLabel"}]
+			//[ "Arrow", {location:1,	id:"arrow", length:12, foldback:0.8}],
+			//[ "Label", {label:"FOO", id:"label", cssClass:"aLabel"}]
 		],
-		Connector : "Straight",
+		Connector : ["Flowchart", {stub:20, alwaysRespectStubs:true}],
 		PaintStyle : {lineWidth:2, strokeStyle:'#5c96bc'},
 	});
 
