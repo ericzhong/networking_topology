@@ -9,6 +9,7 @@ jsPlumb.bind("ready", function() {
 	}
 
 	var target_config = {
+		dropOptions:{ hoverClass:"dragHover" },
 	}
 
 	jsPlumb.importDefaults({

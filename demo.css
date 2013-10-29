@@ -19,7 +19,7 @@ body {
 	vertical-align:top;
 	float:left;
 	z-index:9999;
-	position: relative;
+	position: absolute;
 	opacity:0.8;
 }
 
@@ -41,7 +41,7 @@ body {
 	width:auto;
 	height:auto;
 	float:left;
-	position: relative;
+	position: absolute;
 	border: 1px solid black;
 	overflow:auto;
 	z-index:4;
@@ -136,7 +136,7 @@ body {
 	min-height:1em;
 	background-color:white;
 	padding:1px;
-	position: relative;
+	position: absolute;
 	z-index:4;
 	border-radius:1em;
 	border:1px solid #2e6f9a;
@@ -209,8 +209,7 @@ body {
 
 .dragActive { border:2px dotted orange; }
 .dropHover { border:1px dotted red; }
-.dragHover { border:20px dotted blue; }
-
+.dragHover { border:2px solid orange; }
 
 /* example */
 #vm1 {
