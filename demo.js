@@ -37,19 +37,24 @@ jsPlumb.bind("ready", function() {
 		//appendTo: ".canvas"
 	});
 
+	$('.vol-box').droppable({
+		accept: '.item.vol', 
+
+		drop: function (e, ui) {
+			var vol = $('<div class="vol"></div>')
+			$(this).append(vol)
+			jsPlumb.repaintEverything()
+		}
+	});
+
 	$('.if-box').droppable({
 		accept: '.item.if', 
 
 		drop: function (e, ui) {
-			var old = $(ui.draggable)
-			var el = old.clone()
-			el.removeClass("item")
-				.removeClass("ui-draggable") //hack jQuery
-				.removeAttr("style")
-				.attr('id','') //jsPlumb generate
-				.appendTo($(this))
+			var _if = $('<div class="if"></div>')
+			$(this).append(_if)
 
-			jsPlumb.makeSource( el, {
+			jsPlumb.makeSource( _if, {
 				//filter:".if",				// only supported by jquery
 				anchor:"Continuous",
 				connector:[ "StateMachine", { curviness:20 } ],
@@ -58,23 +63,7 @@ jsPlumb.bind("ready", function() {
 				onMaxConnections:function(info, e) {
 					alert("Maximum connections (" + info.maxConnections + ") reached");
 				}
-			});			
-
-			jsPlumb.repaintEverything()
-		}
-	});
-
-	$('.vol-box').droppable({
-		accept: '.item.vol', 
-
-		drop: function (e, ui) {
-			var old = $(ui.draggable)
-			var el = old.clone()
-			el.removeClass("item")
-				.removeClass("ui-draggable")
-				.removeAttr("style")
-				.attr('id','') //jsPlumb generate
-				.appendTo($(this))
+			})		
 
 			jsPlumb.repaintEverything()
 		}
@@ -90,51 +79,43 @@ jsPlumb.bind("ready", function() {
 		},
 
 		drop: function (e, ui) {
-			var old = $(ui.draggable)
-			var el = old.clone()
-			el.css({
-				'top': ui.offset.top,
-				'left': ui.offset.left,
-				'position': ''
-				})
-				.removeClass("item")
-				.removeClass("ui-draggable")
-				.attr('id','') //jsPlumb generate
-				.appendTo($(this))
+			var vm = $('' +
+				'<div class="vm">' +
+				    '<div class="vm-name">VM</div>' +
+				    '<div class="vm-content">' +
+				        '<div class="vol-box"></div>' +
+				        '<div class="if-box"></div>' +
+				    '</div>' +
+				'</div>')
+
+			var sn = $('' + 
+				'<div class="sn"></div>')
+
+			var el = $(ui.draggable)
 
 			if(el.hasClass('vm')){
-				//jsPlumb.draggable not work for VM
-				el.draggable({containment: "parent"})
+				$(this).append(vm)
 
-				el.find('.vm-content .vol-box').droppable({
+				jsPlumb.draggable( vm, {containment: "parent"})
+
+				vm.find('.vm-content .vol-box').droppable({
 					accept: '.item.vol', 
 
 					drop: function (e, ui) {
-						var old = $(ui.draggable)
-						var el = old.clone()
-						el.removeClass("item")
-							.removeClass("ui-draggable")
-							.removeAttr("style")
-							.attr('id','') //jsPlumb generate
-							.appendTo($(this))
-
+						var vol = $('<div class="vol"></div>')
+						$(this).append(vol)
 						jsPlumb.repaintEverything()
 					}
 				})
 
-				el.find('.vm-content .if-box').droppable({
+				vm.find('.vm-content .if-box').droppable({
 					accept: '.item.if', 
 
 					drop: function (e, ui) {
-						var old = $(ui.draggable)
-						var el = old.clone()
-						el.removeClass("item")
-							.removeClass("ui-draggable") //hack jQuery
-							.removeAttr("style")
-							.attr('id','') //jsPlumb generate
-							.appendTo($(this))
+						var _if = $('<div class="if"></div>')
+						$(this).append(_if)
 
-						jsPlumb.makeSource( el, {
+						jsPlumb.makeSource( _if, {
 							//filter:".if",				// only supported by jquery
 							anchor:"Continuous",
 							connector:[ "StateMachine", { curviness:20 } ],
@@ -143,21 +124,21 @@ jsPlumb.bind("ready", function() {
 							onMaxConnections:function(info, e) {
 								alert("Maximum connections (" + info.maxConnections + ") reached");
 							}
-						});			
+						})		
 
 						jsPlumb.repaintEverything()
 					}
 				})
-			}
+			}else{
+				$(this).append(sn)
 
-			jsPlumb.draggable( el, {containment: "parent"})
-
-			if(el.hasClass('sn')){
-				jsPlumb.makeTarget( el, {
+				jsPlumb.draggable( sn, {containment: "parent"})
+				jsPlumb.makeTarget( sn, {
 					dropOptions:{ hoverClass:"dragHover" },
 					anchor:"Continuous"				
 				})
 			}
+
 		}
 	});
 	
