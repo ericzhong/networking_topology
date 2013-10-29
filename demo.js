@@ -109,13 +109,14 @@ jsPlumb.bind("ready", function() {
 		}
 	});
 	
-	jsPlumb.bind("click", function(c) { 
-		jsPlumb.detach(c); 
-	});			
+	jsPlumb.bind("click", function(conn, originalEvent) {
+		if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
+			jsPlumb.detach(conn);
+	});
 
-	//jsPlumb.bind("connection", function(info) {
-	//	info.connection.getOverlay("label").setLabel(info.connection.id);
-	//});
+	jsPlumb.bind("connection", function(info) {
+		info.connection.getOverlay("label").setLabel(info.connection.id);
+	});
 
 
 	
@@ -126,6 +127,13 @@ jsPlumb.bind("ready", function() {
 	});
 	jsPlumb.makeSource($(".canvas .if"), source_config)
 	jsPlumb.makeTarget($(".canvas .sn"), target_config)
+	jsPlumb.connect({ source:$("#if1"), target:$("#sn1") })
 	jsPlumb.connect({ source:$("#if2"), target:$("#sn1") })
+	jsPlumb.connect({ source:$("#if3"), target:$("#sn2") })
+	jsPlumb.connect({ source:$("#if4"), target:$("#sn2") })
+	jsPlumb.connect({ source:$("#if5"), target:$("#sn1") })
+	jsPlumb.connect({ source:$("#if6"), target:$("#sn1") })
+	jsPlumb.connect({ source:$("#if7"), target:$("#sn2") })
+	jsPlumb.connect({ source:$("#if8"), target:$("#sn2") })
 
 });

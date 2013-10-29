@@ -213,13 +213,21 @@ body {
 
 /* example */
 #vm1 {
-	left:50px;
+	left:300px;
 	top:50px;
 }
 
+#vm2 {
+	left:400px;
+	top:350px;
+}
+
 #sn1 {
-	left:50px;
+	left:200px;
 	top:200px;
 }
 
-
+#sn2 {
+	left:200px;
+	top:250px;
+}
