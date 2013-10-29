@@ -19,7 +19,7 @@ body {
 	vertical-align:top;
 	float:left;
 	z-index:9999;
-	position: absolute;
+	position: relative;
 	opacity:0.8;
 }
 
@@ -41,6 +41,7 @@ body {
 	width:auto;
 	height:auto;
 	float:left;
+	position: relative;
 	border: 1px solid black;
 	overflow:auto;
 	z-index:4;
@@ -106,8 +107,8 @@ body {
 	padding:3px;
 	float:left;
 	margin:0 0 0 5px;
-	min-width:1em;
-	min-height:1em;
+	min-width:10px;
+	min-height:10px;
 	border: 1px dashed lightgray;
 }
 
@@ -132,10 +133,10 @@ body {
 .sn { 
 	width:60em;
 	height:auto;
-	min-height:10px;
+	min-height:1em;
 	background-color:white;
 	padding:1px;
-	position:absolute;
+	position: relative;
 	z-index:4;
 	border-radius:1em;
 	border:1px solid #2e6f9a;
@@ -179,6 +180,7 @@ body {
 	border-radius:0.5em;
 	border:1px solid #346789;
 	cursor:pointer;
+	font-size:11px;
 }
 
 ._jsPlumb_endpoint {
@@ -191,42 +193,34 @@ body {
 	max-height:70px;
 }
 
-
-
-
-
-#vm1 {
-	left:10em;
-	top:5em;
-	position: relative;
+.item .vol-box {
+	min-height:10px;
+	border: 0;
 }
 
-#vm2 {
-	left:10em;
-	top:5em;
-	position: relative;
+.item .if-box {
+	border: 0;
 }
 
-#sn1 {
-	left:5em;
-	top:20em;
-	position: relative;
+.item.sn {
+	max-width: 45px;
 }
-
-#sn2 {
-	left:5em;
-	top:20em;
-	position: relative;
-}
-
-.dragHover { border:2px solid orange; }
-
-path { cursor:pointer; }
-
-
 
 
 .dragActive { border:2px dotted orange; }
 .dropHover { border:1px dotted red; }
+.dragHover { border:20px dotted blue; }
+
+
+/* example */
+#vm1 {
+	left:50px;
+	top:50px;
+}
+
+#sn1 {
+	left:50px;
+	top:200px;
+}
 
 
