@@ -1,3 +1,27 @@
+function blink(el, bg) {
+	var times = 3  /* editable */
+	
+	var bg_old = el.css("background-color")
+	var count = 0
+	var interval
+	var color = bg
+	function set_bg() {
+		el.css({"background-color": color})
+		if(color==bg)
+			color = bg_old;
+		else
+			color = bg;
+
+		count = count + 1
+		if(count == times*2) {
+			clearInterval(interval);
+			el.css({"background-color": ""})
+		}
+	}
+	interval = setInterval(set_bg, 100);
+}
+
+
 //jsPlumb.ready(function() {
 jsPlumb.bind("ready", function() {
 
@@ -53,6 +77,7 @@ jsPlumb.bind("ready", function() {
 			var el = $('<div class="vol"></div>')
 			$(this).append(el)
 			jsPlumb.repaintEverything()
+			blink(el, 'black')
 		}
 	};
 
@@ -65,6 +90,7 @@ jsPlumb.bind("ready", function() {
 
 			jsPlumb.makeSource( el, source_config)		
 			jsPlumb.repaintEverything()
+			blink(el, 'black')
 		}
 	};
 
@@ -95,6 +121,7 @@ jsPlumb.bind("ready", function() {
 			if( $(ui.draggable).hasClass('vm') ){
                         	vm.css({'top': ui.offset.top, 'left': ui.offset.left})
 				$(this).append(vm)
+				blink(vm, 'black')
 
 				jsPlumb.draggable( vm, {containment: "parent"})
 
@@ -103,6 +130,7 @@ jsPlumb.bind("ready", function() {
 			}else{
                         	sn.css({'top': ui.offset.top, 'left': ui.offset.left})
 				$(this).append(sn)
+				blink(sn, 'black')
 
 				jsPlumb.draggable( sn, {containment: "parent"})
 				jsPlumb.makeTarget( sn, target_config)
