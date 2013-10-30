@@ -21,6 +21,9 @@ body {
 	z-index:9999;
 	position: absolute;
 	opacity:0.8;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	background-color: #636363;
 }
 
 .canvas { 
@@ -30,11 +33,12 @@ body {
 }
 
 .item-box {
-	width:75px;
-	height: 75px;
-	background-color: #71727E;
-	border-top: 1px solid #e0e0e0;
+	width: 55px;
+	height: 55px;
+	/*background-color: #71727E;*/
+	/*border-top: 1px solid #e0e0e0;*/
 	position: relative;
+	float: left;
 }
 
 .vm {
@@ -188,22 +192,61 @@ body {
 }
 
 
+/* item override */
+
+.item-box:hover {
+	background-color: #353535;
+}
+
 .item {
 	max-width:70px;
 	max-height:70px;
 }
 
+.item.vm {
+	font-size: 8px;
+	-webkit-box-shadow: 0 0 0;
+	box-shadow: 0 0 0;
+}
+
+.item.vm:hover {
+	background-color: white;
+	color: black;
+}
 .item .vol-box {
-	min-height:10px;
+	min-height:0;
+	min-width:0;
+	width:4px;
+	height:1px;
 	border: 0;
 }
 
 .item .if-box {
+	min-height:0;
+	min-width:0;
+	width:4px;
+	height:1px;
 	border: 0;
+}
+
+.item.if {
+	cursor: move;
+}
+
+.item.vol {
+	cursor: move;
 }
 
 .item.sn {
 	max-width: 45px;
+	min-height: 0;
+	height: 8px;
+	-webkit-box-shadow: 0 0 0;
+	box-shadow: 0 0 0;
+}
+
+.item.sn:hover {
+	background-color:white;
 }
 
 
