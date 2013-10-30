@@ -32,6 +32,16 @@ body {
 	background-color:white;
 }
 
+.trash {
+	width:auto;
+        height:auto;
+}
+
+.trash img {
+	width:100px;
+        height:100px;
+}
+
 .item-box {
 	width: 55px;
 	height: 55px;

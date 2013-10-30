@@ -60,6 +60,20 @@ jsPlumb.bind("ready", function() {
 		});
 	});
 
+	/*
+	// left-bottom
+	$(".trash").css({
+		position: 'absolute',
+		left: '10px',
+		top: $('.canvas').outerHeight() - $('.trash').first().outerHeight()
+	});
+
+	// no drag
+	$("img").mousedown(function(){
+		return false;
+	});
+	*/
+
 	$(".panel").draggable({
 		containment: "parent"
 	});
